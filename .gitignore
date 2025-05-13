@@ -1,3 +1,9 @@
 uniquePtrExample
 .vscode/
 sharedPtrExample
+
+# Ignore all binaries
+/build/
+*.out
+*.exe
+*.o
