@@ -1,9 +1,5 @@
-uniquePtrExample
+# Ignore VS Code settings
 .vscode/
-sharedPtrExample
 
-# Ignore all binaries
+# Ignore all compiled binaries in build/
 /build/
-*.out
-*.exe
-*.o
