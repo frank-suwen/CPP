@@ -1,0 +1,2 @@
+clang++ -std=c++17 -O2 -pthread concurrency/multithreadedCounter.cpp -o build/multithreadedCou
+nter
