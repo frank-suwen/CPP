@@ -1,0 +1,5 @@
+clang++ -std=c++17 -g trace.cpp -o trace
+
+nm trace
+
+objdump -d trace
