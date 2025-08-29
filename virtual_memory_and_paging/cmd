@@ -1,0 +1,1 @@
+clang++ -std=c++17 -Wall -Wextra mini_cpp_pager.cpp -o mini_cpp_pager
