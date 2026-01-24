@@ -1,5 +1,5 @@
 # Ignore VS Code settings
-.vscode/
+# .vscode/
 
 # Ignore all compiled binaries in build/
 /build/
