@@ -1,10 +1,10 @@
-#include "lab/spsc_ring.hpp"
+#include "spsc_ring.hpp"
 #include <atomic>
 #include <chrono>
 #include <iostream>
 #include <thread>
 
-using clock_t = std::chrono::steady_clock;
+using spsc_clock = std::chrono::steady_clock;
 
 int main(int argc, char** argv) {
     (void)argc; (void)argv;
@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     lab::SpscRing<int, 1 << 12> q;
 
     std::atomic<bool> start{false};
-    auto t0 = clock_t::now();
+    auto t0 = spsc_clock::now();
 
     std::thread producer([&]{
         while (!start.load(std::memory_order_acquire)) {}
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     producer.join();
     consumer.join();
 
-    auto t1 = clock_t::now();
+    auto t1 = spsc_clock::now();
     auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t0).count();
     double ns_per_transfer = static_cast<double>(ns) / N;
 

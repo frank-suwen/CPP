@@ -12,7 +12,7 @@ namespace lab {
 // Small cacheline pad to reduce false sharing between head/tail
 struct alignas(64) CachePad { char pad[64]; };
 
-template <typpename T, std::size_t CapacityPow2>
+template <typename T, std::size_t CapacityPow2>
 class SpscRing {
     static_assert((CapacityPow2 & (CapacityPow2 - 1)) == 0,
                   "Capacity must be a power of two");
@@ -32,7 +32,7 @@ public:
 
     // non-copyable, movable if you want (omitted for brevity)
     SpscRing(const SpscRing&) = delete;
-    SpscRing& operator(const SpscRing&) = delete;
+    SpscRing& operator=(const SpscRing&) = delete;
 
     // Attempt to enqueue one element.
     // Returns false if the ring is full.
@@ -46,7 +46,7 @@ public:
         }
 
         storage_[head & kMask] = v; // write data before publishing
-        head_.store(head + 1, std::memory_rder_release); // publish
+        head_.store(head + 1, std::memory_order_release); // publish
         return true;
     }
 

@@ -1,0 +1,1 @@
+g++ -std=c++20 -O3 -march=native -pthread -DNDEBUG -o build/bench_spsc lab/bench_spsc.cpp
