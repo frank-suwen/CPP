@@ -9,7 +9,7 @@
 namespace lab {
 
 // Concrete instantiation for demos/bench: 64-bit payload, 4096 slots.
-using RingU64 = SpscRing<std::unit64_t, 1u << 12>;
+using RingU64 = SpscRing<std::uint64_t, 1u << 12>;
 
 struct BenchResult {
     long long times_ns{};

@@ -1,5 +1,5 @@
 #include <cassert>
-#include "spsc_ring.hpp"
+#include "../lab/spsc_ring.hpp"
 
 int main() {
     lab::SpscRing<int, 1024> q;

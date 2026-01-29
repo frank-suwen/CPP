@@ -1,7 +1,7 @@
 #include <cassert>
 #include <thread>
 #include <vector>
-#include "spsc_ring.hpp"
+#include "../lab/spsc_ring.hpp"
 
 int main() {
     constexpr int N = 100'000;
@@ -16,14 +16,14 @@ int main() {
     std::thread cons([&]{
         while (!go.load(std::memory_order_acquire)) {}
         int v;
-        for (int i = 0; i < N; ++i) { while (!q.try_pop(v)) {} out.push_back(v) }
+        for (int i = 0; i < N; ++i) { while (!q.try_pop(v)) {} out.push_back(v); }
     });
 
-    go.store(true, st::memory_order_release);
+    go.store(true, std::memory_order_release);
     prod.join(); cons.join();
 
     assert(static_cast<int>(out.size()) == N);
-    for (int i = 0; i < N; ++i) assert(out[i] = i);
+    for (int i = 0; i < N; ++i) assert(out[i] == i);
     return 0;
 
 }

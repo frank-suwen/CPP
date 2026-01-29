@@ -20,3 +20,10 @@ g++ -std=c++20 -O2 -pthread -o build/test_threads tests/test_threads.cpp
 ./build/test_smoke
 ./build/test_threads
 ./build/bench_spsc 2000000
+```
+
+### output
+- **transfers = 2000000**
+- **time_ns = 985572270**
+- **ns_per_transfer = 492.786**
+- **M_transfers_per_s = 2.02928**
