@@ -24,7 +24,7 @@ static void usage(const char* prog) {
               << "  default: --bind 0.0.0.0 --port 9000\n";
 }
 
-int main(int artc, char** argv) {
+int main(int argc, char** argv) {
     std::string bind_ip = "0.0.0.0";
     int port = 9000;
 
@@ -44,13 +44,13 @@ int main(int artc, char** argv) {
         }
     }
 
-    int fd = ::socket(AF_INET, SOCK_DGRA, 0);
+    int fd = ::socket(AF_INET, SOCK_DGRAM, 0);
     if (fd < 0) {
         std::perror("socket");
         return 1;
     }
 
-    if (set_nonblock(fd) != 0) {
+    if (set_nonblocking(fd) != 0) {
         std::perror("fcntl(O_NONBLOCK)");
         ::close(fd);
         return 1;
@@ -65,7 +65,7 @@ int main(int artc, char** argv) {
         return 1;
     }
 
-    if (::bin(fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) != 0) {
+    if (::bind(fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) != 0) {
         std::perror("bind");
         ::close(fd);
         return 1;
@@ -79,7 +79,7 @@ int main(int artc, char** argv) {
     }
 
     epoll_event ev{};
-    ev.events = EPOLLIN: // level-triggered by default
+    ev.events = EPOLLIN; // level-triggered by default
     ev.data.fd = fd;
 
     if (::epoll_ctl(ep, EPOLL_CTL_ADD, fd, &ev) != 0) {
@@ -96,7 +96,7 @@ int main(int artc, char** argv) {
     std::array<epoll_event, 8> events{};
 
     while (true) {
-        int n = ::epoll_wait(ep, events.data(), static_cast<int>(events.size()) - 1);
+        int n = ::epoll_wait(ep, events.data(), static_cast<int>(events.size()), - 1);
         if (n < 0) {
             if (errno == EINTR) continue;
             std::perror("epoll_wait");
@@ -114,7 +114,7 @@ int main(int artc, char** argv) {
 
                 ssize_t r = ::recvfrom(fd, buf.data(), buf.size(), 0, reinterpret_cast<sockaddr*>(&peer), &peer_len);
                 if (r < 0) {
-                    if (errno == EAGIN || errno == EWOULDBLOCK) break; // drained
+                    if (errno == EAGAIN || errno == EWOULDBLOCK) break; // drained
                     std::perror("recvfrom");
                     break;
                 }

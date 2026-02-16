@@ -75,9 +75,9 @@ int main(int argc, char** argv) {
     }
 
     std::vector<char> buf(static_cast<size_t>(payload), 0);
-    std::vector<char> rx(static_cat<size_t>(payload), 0);
+    std::vector<char> rx(static_cast<size_t>(payload), 0);
     std::vector<uint64_t> rtts;
-    rtts.reserve(static_cast<sizt_t>(n));
+    rtts.reserve(static_cast<size_t>(n));
 
     // Warmup a bit to stabilize caches/scheduling
     const int warm = std::min(1000, n / 10);
