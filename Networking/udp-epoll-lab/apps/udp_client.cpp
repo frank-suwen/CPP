@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
         if (a == "--addr" && i + 1 < argc) addr_s = argv[++i];
         else if (a == "--port" && i + 1 < argc) port = std::atoi(argv[++i]);
         else if (a == "--n" && i + 1 < argc) n = std::atoi(argv[++i]);
-        else if (a == "--payload" && i + 1 < argc) payload == std::atoi(argv[++i]);
+        else if (a == "--payload" && i + 1 < argc) payload = std::atoi(argv[++i]);
         else if (a == "--help" || a == "-h")  { usage(argv[0]); return 0; }
         else { std::cerr << "Unknown arg: " << a << "\n"; usage(argv[0]); return 2; }
     }
