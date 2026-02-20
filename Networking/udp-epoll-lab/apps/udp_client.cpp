@@ -1,5 +1,7 @@
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <netinet/in.h>
+#include <poll.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
@@ -29,6 +31,13 @@ static uint64_t percentile_ns(std::vector<uint64_t>& v, double p) {
     std::sort(v.begin(), v.end());
     size_t idx = static_cast<size_t>(p * (v.size() - 1));
     return v[idx];
+}
+
+static int set_nonblocking(int fd) {
+    int flags = ::fcntl(fd, F_GETFL, 0);
+    if (flags < 0) return -1;
+    if (::fcntl(fd, F_SETFL, flags | O_NONBLOCK) < 0) return -1;
+    return 0;
 }
 
 int main(int argc, char** argv) {
@@ -82,6 +91,13 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    // NEW: client non-blocking so we can drain replies quickly
+    if (set_nonblocking(fd) != 0) {
+        std::perror("fcntl(O_NONBLOCK)");
+        ::close(fd);
+        return 1;
+    }
+
     std::vector<char> buf(static_cast<size_t>(payload), 0);
     std::vector<char> rx(static_cast<size_t>(payload), 0);
 
@@ -106,47 +122,76 @@ int main(int argc, char** argv) {
     int sent = 0;
     int received = 0;
 
+    pollfd pfd{};
+    pfd.fd = fd;
+    pfd.events = POLLIN;
+
     while (received < n) {
-        // 1) Fill the window: send until we have 'window' outstanding.
+        // 1) Fill window with sends
         while (sent < n && (sent - received) < window) {
             uint64_t seq = static_cast<uint64_t>(sent);
             std::memcpy(buf.data(), &seq, sizeof(seq));
 
             uint64_t t0 = now_ns();
             ssize_t s = ::send(fd, buf.data(), buf.size(), 0);
-            if (s != static_cast<ssize_t>(buf.size())) {
+            if (s == static_cast<ssize_t>(buf.size())) {
+                sent_ns.emplace(seq, t0);
+                ++sent;
+            } else if (s < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+                // Socket send buffer temporarily full: stop sending this iteration.
+                break;
+            } else {
                 std::perror("send");
                 ::close(fd);
                 return 1;
             }
-
-            sent_ns.emplace(seq, t0);
-            ++sent;
         }
 
-        // 2) Drain replies: receive one (blocking) and compute RTT.
-        // (We keep blocking recv for now to keep the lab minimal and stable.)
-        ssize_t r = ::recv(fd, rx.data(), rx.size(), 0);
-        uint64_t t1 = now_ns();
-        if (r != static_cast<ssize_t>(rx.size())) {
+        // 2) Drain all available replies (until EAGAIN)
+        for (;;) {
+            ssize_t r = ::recv(fd, rx.data(), rx.size(), 0);
+            uint64_t t1 = now_ns();
+
+            if (r == static_cast<ssize_t>(rx.size())) {
+                uint64_t got = 0;
+                std::memcpy(&got, rx.data(), sizeof(got));
+
+                auto it = sent_ns.find(got);
+
+                if (it != sent_ns.end()) {
+                    rtts.push_back(t1 - it->second);
+                    sent_ns.erase(it);
+                    ++received;
+                } else {
+                    // unexpected seq: ignore or retreat as error; keep error for lab clarity
+                    std::cerr << "unexpected seq in reply: " << got << "\n";
+                    ::close(fd);
+                    return 1;
+                }
+                if (received >= n) break;
+                continue;
+            }
+
+            if (r < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+                // Nothing more to read right now
+                break;
+            }
+
+            if (r < 0 && errno == EINTR) {
+                // Interrupted by signal; retry
+                continue;
+            }
+
             std::perror("recv");
             ::close(fd);
             return 1;
         }
 
-        uint64_t got = 0;
-        std::memcpy(&got, rx.data(), sizeof(got));
-
-        auto it = sent_ns.find(got);
-        if (it == sent_ns.end()) {
-            std::cerr << "unexpected seq in reply: " << got << "\n";
-            ::close(fd);
-            return 1;
+        // 3) If we still need more replies, wait briefly for readability.
+        // This avoids busy-spinning when window is full but no packets arrived yet.
+        if (received < n && (sent - received) >= window) {
+            (void)::poll(&pfd, 1, 10 /*ms*/);
         }
-
-        rtts.push_back(t1 - it->second);
-        sent_ns.erase(it);
-        ++received;
     }
 
     ::close(fd);
