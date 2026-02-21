@@ -109,13 +109,23 @@ int main(int argc, char** argv) {
     std::vector<uint64_t> rtts;
     rtts.reserve(static_cast<size_t>(n));
 
+    uint64_t base_seq = 1'000'000; // avoid collisions with warmup/leftovers
+
     // ---- Warmup (still stop-and-wait; keeps it simple) ----
     const int warm = std::min(1000, n / 10);
     for (int i = 0; i < warm; ++i) {
-        uint64_t seq = static_cast<uint64_t>(i);
+        uint64_t seq = base_seq + static_cast<uint64_t>(i);
         std::memcpy(buf.data(), &seq, sizeof(seq));
         (void)::send(fd, buf.data(), buf.size(), 0);
         (void)::recv(fd, rx.data(), rx.size(), 0);
+    }
+
+    // Drain any queued replies so measurement starts clean
+    for (;;) {
+        ssize_t r = ::recv(fd, rx.data(), rx.size(), 0);
+        if (r < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) break;
+        if (r < 0 && errno == EINTR) continue;
+        if (r < 0) { std::perror("recv (drain)"); ::close(fd); return 1; }
     }
 
     // ---- Pipelined section ----
@@ -129,7 +139,7 @@ int main(int argc, char** argv) {
     while (received < n) {
         // 1) Fill window with sends
         while (sent < n && (sent - received) < window) {
-            uint64_t seq = static_cast<uint64_t>(sent);
+            uint64_t seq = base_seq + static_cast<uint64_t>(sent);
             std::memcpy(buf.data(), &seq, sizeof(seq));
 
             uint64_t t0 = now_ns();
@@ -163,7 +173,9 @@ int main(int argc, char** argv) {
                     sent_ns.erase(it);
                     ++received;
                 } else {
-                    // unexpected seq: ignore or retreat as error; keep error for lab clarity
+                    if (got >= base_seq && got < base_seq + static_cast<uint64_t>(warm)) {
+                        continue; // late warmup reply
+                    }
                     std::cerr << "unexpected seq in reply: " << got << "\n";
                     ::close(fd);
                     return 1;
