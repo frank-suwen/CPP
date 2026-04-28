@@ -21,21 +21,21 @@ public:
         std::size_t tail = tail_.load(std::memory_order_relaxed);
         std::size_t next_tail = (tail + 1) & mask_;
 
-        std::size_t head = head_.load(std::memory_order_acquire);
+        std::size_t head = head_.load(std::memory_order_relaxed);
         if (next_tail == head) {
             return false; // full
         }
 
         buffer_[tail] = value;
 
-        tail_.store(next_tail, std::memory_order_release);
+        tail_.store(next_tail, std::memory_order_relaxed);
         return true;
     }
 
     bool pop(std::int64_t& value) {
         std::size_t head = head_.load(std::memory_order_relaxed);
 
-        std::size_t tail = tail_.load(std::memory_order_acquire);
+        std::size_t tail = tail_.load(std::memory_order_relaxed);
         if (head == tail) {
             return false; // empty
         }
@@ -43,7 +43,7 @@ public:
         value = buffer_[head];
 
         std::size_t next_head = (head + 1) & mask_;
-        head_.store(next_head, std::memory_order_release);
+        head_.store(next_head, std::memory_order_relaxed);
         return true;
     }
 
