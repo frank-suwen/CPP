@@ -1,0 +1,27 @@
+bs_profile;[ld-linux-x86-64.so.2];[ld-linux-x86-64.so.2];asm_exc_page_fault;exc_page_fault;do_user_addr_fault;handle_mm_fault;__handle_mm_fault;handle_pte_fault;do_wp_page;wp_page_copy;ptep_clear_flush;flush_tlb_mm_range 250000
+bs_profile;[libc.so.6];bs_call_price 52250000
+bs_profile;[libc.so.6];bs_call_price;asm_sysvec_hyperv_callback;sysvec_hyperv_callback;irqentry_exit;irqentry_exit_to_user_mode;schedule;__schedule;finish_task_switch.isra.0 250000
+bs_profile;[libc.so.6];main 140000000
+bs_profile;[libc.so.6];main;[libm.so.6] 459750000
+bs_profile;[libc.so.6];main;[libm.so.6];asm_sysvec_hyperv_callback;sysvec_hyperv_callback;irqentry_exit;irqentry_exit_to_user_mode;schedule;__schedule;finish_task_switch.isra.0 250000
+bs_profile;[libc.so.6];main;__exp_finite@plt 60250000
+bs_profile;[libc.so.6];main;__log_finite@plt 23000000
+bs_profile;[libc.so.6];main;bs_call_price 327750000
+bs_profile;[libc.so.6];main;bs_call_price;asm_sysvec_hyperv_callback;sysvec_hyperv_callback;irq_exit_rcu;__irq_exit_rcu;handle_softirqs 250000
+bs_profile;[libc.so.6];main;bs_call_price;asm_sysvec_hyperv_callback;sysvec_hyperv_callback;irq_exit_rcu;__irq_exit_rcu;handle_softirqs;net_rx_action;__napi_poll;netvsc_poll;napi_complete_done;netif_receive_skb_list_internal;__netif_receive_skb_list_core;ip_list_rcv;ip_sublist_rcv;ip_sublist_rcv_finish;ip_local_deliver;ip_local_deliver_finish;ip_protocol_deliver_rcu;tcp_v4_rcv;__xfrm_policy_check2.constprop.0 250000
+bs_profile;[libc.so.6];main;bs_call_price;asm_sysvec_hyperv_stimer0;sysvec_hyperv_stimer0;irq_exit_rcu;__irq_exit_rcu;handle_softirqs;run_timer_softirq;__run_timers.part.0;call_timer_fn;tcp_delack_timer;tcp_delack_timer_handler;tcp_send_ack;__tcp_send_ack.part.0;__tcp_transmit_skb;ip_queue_xmit;__ip_queue_xmit;ip_local_out;__ip_local_out;ipv4_conntrack_local 250000
+bs_profile;[libc.so.6];main;bs_call_price;erfc@plt 40000000
+bs_profile;[libc.so.6];main;bs_call_price;erfcf32x 838500000
+bs_profile;[libc.so.6];main;bs_call_price;erfcf32x;asm_sysvec_hyperv_stimer0;sysvec_hyperv_stimer0;irq_exit_rcu;__irq_exit_rcu;handle_softirqs;rcu_core_si;rcu_core;rcu_do_batch;put_cred_rcu;security_cred_free;kfree 250000
+bs_profile;[libc.so.6];main;bs_call_price;erfcf32x;asm_sysvec_hyperv_stimer0;sysvec_hyperv_stimer0;irqentry_exit;irqentry_exit_to_user_mode;schedule;__schedule;finish_task_switch.isra.0 250000
+bs_profile;[libc.so.6];main;bs_call_price;normal_cdf 88000000
+bs_profile;[libc.so.6];main;exp 70750000
+bs_profile;[libc.so.6];main;exp@plt 30000000
+bs_profile;[libc.so.6];main;log 1250000
+bs_profile;[libc.so.6];main;log@plt 23000000
+bs_profile;[libc.so.6];main;log@plt;asm_sysvec_hyperv_stimer0;sysvec_hyperv_stimer0;irqentry_exit;irqentry_exit_to_user_mode;schedule;__schedule;finish_task_switch.isra.0 250000
+bs_profile;[libc.so.6];main;monte_carlo_call_price 450750000
+bs_profile;[libc.so.6];main;normal_cdf 38000000
+bs_profile;[libc.so.6];main;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand 16250000
+bs_profile;[unknown];[ld-linux-x86-64.so.2];[ld-linux-x86-64.so.2];[ld-linux-x86-64.so.2] 250000
+bs_profile;[unknown];[unknown];[ld-linux-x86-64.so.2] 750000

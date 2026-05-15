@@ -1,0 +1,571 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 10K of event 'task-clock:ppp'
+# Event count (approx.): 2662750000
+#
+# Children      Self  Command     Shared Object         Symbol                                                                                                                                                                               
+# ........  ........  ..........  ....................  .....................................................................................................................................................................................
+#
+    99.95%     0.00%  bs_profile  libc.so.6             [.] 0x000079bf5e029d90
+            |
+            ---0x79bf5e029d90
+               |          
+               |--97.98%--main
+               |          |          
+               |          |--48.65%--bs_call_price(Params const&)
+               |          |          |          
+               |          |          |--31.51%--erfcf32x
+               |          |          |          
+               |          |          |--3.30%--normal_cdf(double)
+               |          |          |          
+               |          |           --1.50%--erfc@plt
+               |          |          
+               |          |--16.93%--monte_carlo_call_price(Params const&, long, unsigned int)
+               |          |          
+               |          |--2.66%--exp
+               |          |          
+               |          |--2.26%--__exp_finite@plt
+               |          |          
+               |          |--1.60%--0x79bf5e6eb514
+               |          |          
+               |          |--1.43%--normal_cdf(double)
+               |          |          
+               |          |--1.22%--0x79bf5e6eb488
+               |          |          
+               |          |--1.21%--0x79bf5e6eb711
+               |          |          
+               |          |--1.13%--exp@plt
+               |          |          
+               |          |--0.99%--0x79bf5e6eb682
+               |          |          
+               |          |--0.99%--0x79bf5e6eb4c0
+               |          |          
+               |          |--0.87%--0x79bf5e6eb6ee
+               |          |          
+               |          |--0.87%--log@plt
+               |          |          
+               |          |--0.86%--__log_finite@plt
+               |          |          
+               |          |--0.85%--0x79bf5e6eb4eb
+               |          |          
+               |          |--0.71%--0x79bf5e6eb759
+               |          |          
+               |          |--0.70%--0x79bf5e6eb51d
+               |          |          
+               |          |--0.69%--0x79bf5e6eb75d
+               |          |          
+               |          |--0.67%--0x79bf5e6eb52b
+               |          |          
+               |          |--0.61%--0x79bf5e6eb4e4
+               |          |          
+               |          |--0.61%--std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+               |          |          
+               |          |--0.60%--0x79bf5e6eb4d5
+               |          |          
+               |          |--0.57%--0x79bf5e6eb4f4
+               |          |          
+               |          |--0.56%--0x79bf5e6eb720
+               |          |          
+               |          |--0.54%--0x79bf5e6eb730
+               |          |          
+               |          |--0.52%--0x79bf5e6eb739
+               |          |          
+               |           --0.51%--0x79bf5e6eb74f
+               |          
+                --1.97%--bs_call_price(Params const&)
+
+    97.98%     5.26%  bs_profile  bs_profile            [.] main
+            |          
+            |--92.72%--main
+            |          |          
+            |          |--48.65%--bs_call_price(Params const&)
+            |          |          |          
+            |          |          |--31.51%--erfcf32x
+            |          |          |          
+            |          |          |--3.30%--normal_cdf(double)
+            |          |          |          
+            |          |           --1.50%--erfc@plt
+            |          |          
+            |          |--16.93%--monte_carlo_call_price(Params const&, long, unsigned int)
+            |          |          
+            |          |--2.66%--exp
+            |          |          
+            |          |--2.26%--__exp_finite@plt
+            |          |          
+            |          |--1.60%--0x79bf5e6eb514
+            |          |          
+            |          |--1.43%--normal_cdf(double)
+            |          |          
+            |          |--1.22%--0x79bf5e6eb488
+            |          |          
+            |          |--1.21%--0x79bf5e6eb711
+            |          |          
+            |          |--1.13%--exp@plt
+            |          |          
+            |          |--0.99%--0x79bf5e6eb682
+            |          |          
+            |          |--0.99%--0x79bf5e6eb4c0
+            |          |          
+            |          |--0.87%--0x79bf5e6eb6ee
+            |          |          
+            |          |--0.87%--log@plt
+            |          |          
+            |          |--0.86%--__log_finite@plt
+            |          |          
+            |          |--0.85%--0x79bf5e6eb4eb
+            |          |          
+            |          |--0.71%--0x79bf5e6eb759
+            |          |          
+            |          |--0.70%--0x79bf5e6eb51d
+            |          |          
+            |          |--0.69%--0x79bf5e6eb75d
+            |          |          
+            |          |--0.67%--0x79bf5e6eb52b
+            |          |          
+            |          |--0.61%--0x79bf5e6eb4e4
+            |          |          
+            |          |--0.61%--std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+            |          |          
+            |          |--0.60%--0x79bf5e6eb4d5
+            |          |          
+            |          |--0.57%--0x79bf5e6eb4f4
+            |          |          
+            |          |--0.56%--0x79bf5e6eb720
+            |          |          
+            |          |--0.54%--0x79bf5e6eb730
+            |          |          
+            |          |--0.52%--0x79bf5e6eb739
+            |          |          
+            |           --0.51%--0x79bf5e6eb74f
+            |          
+             --5.26%--0x79bf5e029d90
+                       main
+
+    50.62%    14.27%  bs_profile  bs_profile            [.] bs_call_price(Params const&)
+            |          
+            |--36.35%--bs_call_price(Params const&)
+            |          |          
+            |          |--31.51%--erfcf32x
+            |          |          
+            |          |--3.30%--normal_cdf(double)
+            |          |          
+            |           --1.50%--erfc@plt
+            |          
+             --14.27%--0x79bf5e029d90
+                       |          
+                       |--12.31%--main
+                       |          bs_call_price(Params const&)
+                       |          
+                        --1.96%--bs_call_price(Params const&)
+
+    31.51%    31.49%  bs_profile  libm.so.6             [.] erfcf32x
+            |          
+             --31.49%--0x79bf5e029d90
+                       main
+                       bs_call_price(Params const&)
+                       erfcf32x
+
+    16.93%    16.93%  bs_profile  bs_profile            [.] monte_carlo_call_price(Params const&, long, unsigned int)
+            |
+            ---0x79bf5e029d90
+               main
+               monte_carlo_call_price(Params const&, long, unsigned int)
+
+     4.73%     4.73%  bs_profile  bs_profile            [.] normal_cdf(double)
+            |
+            ---0x79bf5e029d90
+               main
+               |          
+               |--3.30%--bs_call_price(Params const&)
+               |          normal_cdf(double)
+               |          
+                --1.43%--normal_cdf(double)
+
+     2.66%     2.66%  bs_profile  libm.so.6             [.] exp
+            |
+            ---0x79bf5e029d90
+               main
+               exp
+
+     2.26%     2.26%  bs_profile  libm.so.6             [.] __exp_finite@plt
+            |
+            ---0x79bf5e029d90
+               main
+               __exp_finite@plt
+
+     1.60%     1.60%  bs_profile  libm.so.6             [.] 0x0000000000076514
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb514
+
+     1.60%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb514
+            |
+            ---0x79bf5e6eb514
+
+     1.50%     1.50%  bs_profile  bs_profile            [.] erfc@plt
+            |
+            ---0x79bf5e029d90
+               main
+               bs_call_price(Params const&)
+               erfc@plt
+
+     1.22%     1.22%  bs_profile  libm.so.6             [.] 0x0000000000076488
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb488
+
+     1.22%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb488
+            |
+            ---0x79bf5e6eb488
+
+     1.21%     1.21%  bs_profile  libm.so.6             [.] 0x0000000000076711
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb711
+
+     1.21%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb711
+            |
+            ---0x79bf5e6eb711
+
+     1.13%     1.13%  bs_profile  bs_profile            [.] exp@plt
+            |
+            ---0x79bf5e029d90
+               main
+               exp@plt
+
+     0.99%     0.99%  bs_profile  libm.so.6             [.] 0x00000000000764c0
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb4c0
+
+     0.99%     0.99%  bs_profile  libm.so.6             [.] 0x0000000000076682
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb682
+
+     0.99%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4c0
+            |
+            ---0x79bf5e6eb4c0
+
+     0.99%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb682
+            |
+            ---0x79bf5e6eb682
+
+     0.87%     0.86%  bs_profile  bs_profile            [.] log@plt
+            |          
+             --0.86%--0x79bf5e029d90
+                       main
+                       log@plt
+
+     0.87%     0.87%  bs_profile  libm.so.6             [.] 0x00000000000766ee
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb6ee
+
+     0.87%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb6ee
+            |
+            ---0x79bf5e6eb6ee
+
+     0.86%     0.86%  bs_profile  libm.so.6             [.] __log_finite@plt
+            |
+            ---0x79bf5e029d90
+               main
+               __log_finite@plt
+
+     0.85%     0.85%  bs_profile  libm.so.6             [.] 0x00000000000764eb
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb4eb
+
+     0.85%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4eb
+            |
+            ---0x79bf5e6eb4eb
+
+     0.71%     0.71%  bs_profile  libm.so.6             [.] 0x0000000000076759
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb759
+
+     0.71%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb759
+            |
+            ---0x79bf5e6eb759
+
+     0.70%     0.70%  bs_profile  libm.so.6             [.] 0x000000000007651d
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb51d
+
+     0.70%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb51d
+            |
+            ---0x79bf5e6eb51d
+
+     0.69%     0.69%  bs_profile  libm.so.6             [.] 0x000000000007675d
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb75d
+
+     0.69%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb75d
+            |
+            ---0x79bf5e6eb75d
+
+     0.67%     0.67%  bs_profile  libm.so.6             [.] 0x000000000007652b
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb52b
+
+     0.67%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb52b
+            |
+            ---0x79bf5e6eb52b
+
+     0.61%     0.61%  bs_profile  bs_profile            [.] std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+            |
+            ---0x79bf5e029d90
+               main
+               std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+
+     0.61%     0.61%  bs_profile  libm.so.6             [.] 0x00000000000764e4
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb4e4
+
+     0.61%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4e4
+            |
+            ---0x79bf5e6eb4e4
+
+     0.60%     0.60%  bs_profile  libm.so.6             [.] 0x00000000000764d5
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb4d5
+
+     0.60%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4d5
+            |
+            ---0x79bf5e6eb4d5
+
+     0.57%     0.57%  bs_profile  libm.so.6             [.] 0x00000000000764f4
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb4f4
+
+     0.57%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4f4
+            |
+            ---0x79bf5e6eb4f4
+
+     0.56%     0.56%  bs_profile  libm.so.6             [.] 0x0000000000076720
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb720
+
+     0.56%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb720
+            |
+            ---0x79bf5e6eb720
+
+     0.54%     0.54%  bs_profile  libm.so.6             [.] 0x0000000000076730
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb730
+
+     0.54%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb730
+            |
+            ---0x79bf5e6eb730
+
+     0.52%     0.52%  bs_profile  libm.so.6             [.] 0x0000000000076739
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb739
+
+     0.52%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb739
+            |
+            ---0x79bf5e6eb739
+
+     0.51%     0.51%  bs_profile  libm.so.6             [.] 0x000000000007674f
+            |
+            ---0x79bf5e029d90
+               main
+               0x79bf5e6eb74f
+
+     0.51%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb74f
+            |
+            ---0x79bf5e6eb74f
+
+     0.43%     0.43%  bs_profile  libm.so.6             [.] 0x000000000007672c
+     0.43%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb72c
+     0.28%     0.28%  bs_profile  libm.so.6             [.] 0x00000000000764c4
+     0.28%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4c4
+     0.20%     0.20%  bs_profile  libm.so.6             [.] 0x00000000000766b9
+     0.20%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb6b9
+     0.19%     0.19%  bs_profile  libm.so.6             [.] 0x000000000007648e
+     0.19%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb48e
+     0.18%     0.18%  bs_profile  libm.so.6             [.] 0x00000000000764b3
+     0.18%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4b3
+     0.17%     0.17%  bs_profile  libm.so.6             [.] 0x00000000000764fd
+     0.17%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4fd
+     0.16%     0.16%  bs_profile  libm.so.6             [.] 0x00000000000766e6
+     0.16%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb6e6
+     0.12%     0.12%  bs_profile  libm.so.6             [.] 0x0000000000076760
+     0.12%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb760
+     0.11%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb497
+     0.11%     0.11%  bs_profile  libm.so.6             [.] 0x0000000000076474
+     0.11%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb474
+     0.10%     0.10%  bs_profile  libm.so.6             [.] 0x0000000000076497
+     0.08%     0.08%  bs_profile  libm.so.6             [.] 0x0000000000076717
+     0.08%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb717
+     0.08%     0.08%  bs_profile  libm.so.6             [.] 0x000000000007650f
+     0.08%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb50f
+     0.07%     0.07%  bs_profile  libm.so.6             [.] 0x0000000000076724
+     0.07%     0.07%  bs_profile  libm.so.6             [.] 0x000000000007677b
+     0.07%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb724
+     0.07%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb77b
+     0.06%     0.06%  bs_profile  libm.so.6             [.] 0x0000000000076502
+     0.06%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb502
+     0.05%     0.05%  bs_profile  libm.so.6             [.] log
+     0.05%     0.05%  bs_profile  libm.so.6             [.] 0x0000000000076678
+     0.05%     0.05%  bs_profile  libm.so.6             [.] 0x0000000000076728
+     0.05%     0.05%  bs_profile  libm.so.6             [.] 0x000000000007676a
+     0.05%     0.05%  bs_profile  libm.so.6             [.] 0x0000000000076817
+     0.05%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb678
+     0.05%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb728
+     0.05%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb76a
+     0.05%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb817
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] asm_sysvec_hyperv_callback
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] asm_sysvec_hyperv_stimer0
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] sysvec_hyperv_callback
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] irq_exit_rcu
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] sysvec_hyperv_stimer0
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] __irq_exit_rcu
+     0.04%     0.01%  bs_profile  [kernel.kallsyms]     [k] handle_softirqs
+     0.04%     0.04%  bs_profile  [kernel.kallsyms]     [k] finish_task_switch.isra.0
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] irqentry_exit
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] irqentry_exit_to_user_mode
+     0.04%     0.04%  bs_profile  libm.so.6             [.] 0x0000000000076794
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] schedule
+     0.04%     0.00%  bs_profile  [kernel.kallsyms]     [k] __schedule
+     0.04%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb794
+     0.03%     0.03%  bs_profile  libm.so.6             [.] 0x0000000000076695
+     0.03%     0.03%  bs_profile  libm.so.6             [.] 0x00000000000767da
+     0.03%     0.03%  bs_profile  libm.so.6             [.] 0x00000000000767ec
+     0.03%     0.03%  bs_profile  libm.so.6             [.] 0x0000000000076829
+     0.03%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb695
+     0.03%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb7da
+     0.03%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb7ec
+     0.03%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb829
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x0000000000076482
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x000000000007649f
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x0000000000076506
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x00000000000766d4
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x0000000000076820
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x000000000007682e
+     0.02%     0.02%  bs_profile  libm.so.6             [.] 0x0000000000076832
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb482
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb49f
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb506
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb6d4
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb820
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb82e
+     0.02%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb832
+     0.01%     0.01%  bs_profile  [kernel.kallsyms]     [k] __xfrm_policy_check2.constprop.0
+     0.01%     0.01%  bs_profile  [kernel.kallsyms]     [k] ipv4_conntrack_local
+     0.01%     0.01%  bs_profile  [kernel.kallsyms]     [k] kfree
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] net_rx_action
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __napi_poll
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] run_timer_softirq
+     0.01%     0.01%  bs_profile  [kernel.kallsyms]     [k] flush_tlb_mm_range
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __run_timers.part.0
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] netvsc_poll
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e76e601
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] call_timer_fn
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] napi_complete_done
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e76d655
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] asm_exc_page_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] netif_receive_skb_list_internal
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] tcp_delack_timer
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __netif_receive_skb_list_core
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] exc_page_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] tcp_delack_timer_handler
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] do_user_addr_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_list_rcv
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] tcp_send_ack
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __tcp_send_ack.part.0
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] handle_mm_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_sublist_rcv
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __handle_mm_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __tcp_transmit_skb
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_sublist_rcv_finish
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] rcu_core_si
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] handle_pte_fault
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_local_deliver
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_queue_xmit
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] rcu_core
+     0.01%     0.01%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000000000001131c
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __ip_queue_xmit
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] do_wp_page
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_local_deliver_finish
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] rcu_do_batch
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x0000000000000040
+     0.01%     0.01%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000000000000b80d
+     0.01%     0.01%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000000000000c151
+     0.01%     0.01%  bs_profile  ld-linux-x86-64.so.2  [.] 0x00000000000130d2
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x0000000000076470
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x00000000000764ac
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x0000000000076521
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x0000000000076692
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x0000000000076773
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x000000000007679d
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x00000000000767b2
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x00000000000767c8
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x00000000000767df
+     0.01%     0.01%  bs_profile  libm.so.6             [.] 0x0000000000076890
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_local_out
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ip_protocol_deliver_rcu
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] put_cred_rcu
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] wp_page_copy
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e78383c
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0000000000000000
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x0000000000004040
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x00000000000d3f50
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] __ip_local_out
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] ptep_clear_flush
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] security_cred_free
+     0.01%     0.00%  bs_profile  [kernel.kallsyms]     [k] tcp_v4_rcv
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e787a63
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x00005c8fcf240838
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x000079bf5e47a8e8
+     0.01%     0.00%  bs_profile  [unknown]             [.] 0x000079bf5e7624b0
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e76f80d
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e770151
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e77531c
+     0.01%     0.00%  bs_profile  ld-linux-x86-64.so.2  [.] 0x000079bf5e7770d2
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb470
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb4ac
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb521
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb692
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb773
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb79d
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb7b2
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb7c8
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb7df
+     0.01%     0.00%  bs_profile  libm.so.6             [.] 0x000079bf5e6eb890
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
