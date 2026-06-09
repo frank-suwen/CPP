@@ -3,3 +3,7 @@
 
 # Ignore all compiled binaries in build/
 /build/
+
+# CPU profiling artifacts
+benchmark/cpu_optimization/profiling/bs_profile
+benchmark/cpu_optimization/profiling/perf.data
